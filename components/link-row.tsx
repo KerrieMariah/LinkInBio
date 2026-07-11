@@ -35,14 +35,14 @@ export type LinkItem = {
   title: string
   href: string
   icon: LinkIconName
-  /** Optional explicit thumbnail. If omitted, the site favicon is used for real links. */
+  /** Optional explicit thumbnail, usually resolved from the linked site's featured image. */
   image?: string
 }
 
-function faviconFor(href: string): string | null {
+function normalizeHref(href: string): string | null {
   try {
-    const { hostname } = new URL(href)
-    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=128`
+    const withProtocol = /^https?:\/\//i.test(href) ? href : `https://${href}`
+    return new URL(withProtocol).toString()
   } catch {
     return null
   }
@@ -53,15 +53,16 @@ export function LinkRow({ item }: { item: LinkItem }) {
   const Icon = ICONS[item.icon]
   const [copied, setCopied] = useState(false)
   const isRealLink = href && href !== '#'
-  const thumb = item.image ?? (isRealLink ? faviconFor(href) : null)
+  const normalizedHref = isRealLink ? normalizeHref(href) : null
+  const thumb = item.image
   const [imgOk, setImgOk] = useState(true)
 
   async function handleCopy(e: React.MouseEvent) {
     e.preventDefault()
     e.stopPropagation()
-    if (!isRealLink) return
+    if (!normalizedHref) return
     try {
-      await navigator.clipboard.writeText(href)
+      await navigator.clipboard.writeText(normalizedHref)
       setCopied(true)
       setTimeout(() => setCopied(false), 1500)
     } catch {
@@ -71,16 +72,16 @@ export function LinkRow({ item }: { item: LinkItem }) {
 
   return (
     <a
-      href={isRealLink ? href : undefined}
+      href={normalizedHref ?? undefined}
       target={isRealLink ? '_blank' : undefined}
       rel="noopener noreferrer"
       className="group relative flex items-center gap-3 rounded-2xl border-2 border-foreground/10 bg-card px-3 py-3 text-card-foreground shadow-[3px_4px_0_0_var(--primary)] transition-all duration-150 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[5px_7px_0_0_var(--primary)] active:translate-x-[3px] active:translate-y-[4px] active:shadow-[0px_0px_0_0_var(--primary)]"
     >
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-secondary text-secondary-foreground ring-2 ring-foreground/5 transition-transform duration-150 group-hover:-rotate-3">
+      <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-secondary text-secondary-foreground ring-2 ring-foreground/5 transition-transform duration-150 group-hover:-rotate-3">
         {thumb && imgOk ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={thumb || '/placeholder.svg'}
+            src={thumb}
             alt=""
             width={48}
             height={48}

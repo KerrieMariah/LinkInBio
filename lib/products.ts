@@ -17,7 +17,7 @@ export const PRODUCTS: Product[] = [
       'Organize life-worked life. Boost productivity. Achieve goals. 10+ premium pages of elegant, gold-accented planning.',
     priceInCents: 499,
     image: '/images/gatsby-gold.jpg',
-    shopUrl: 'https://example.com/gatsby-gold-planner',
+    shopUrl: 'https://www.etsy.com/listing/4523403988/gatsby-gold-cat-planner-elegant-undated',
   },
   {
     id: 'forest-cat-planner',
@@ -26,7 +26,7 @@ export const PRODUCTS: Product[] = [
       'A cozy daily/weekly/monthly planner for busy entrepreneurs. Instant download.',
     priceInCents: 499,
     image: '/images/forest-cat.jpg',
-    shopUrl: 'https://example.com/forest-cat-planner',
+    shopUrl: 'https://www.etsy.com/listing/4523400760/forest-cat-planner-monthly-weekly-daily',
   },
 ]
 

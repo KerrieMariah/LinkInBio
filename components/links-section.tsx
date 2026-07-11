@@ -1,5 +1,6 @@
 import { LinkRow, type LinkItem } from '@/components/link-row'
 import { SectionTitle } from '@/components/section-title'
+import type { CSSProperties } from 'react'
 
 export function LinksSection({
   title,
@@ -12,8 +13,16 @@ export function LinksSection({
     <section>
       <SectionTitle>{title}</SectionTitle>
       <div className="flex flex-col gap-3">
-        {items.map((item) => (
-          <LinkRow key={item.title} item={item} />
+        {items.map((item, index) => (
+          <div
+            key={item.title}
+            className="animate-smooth-fade-up"
+            style={
+              { '--enter-delay': `${650 + index * 110}ms` } as CSSProperties
+            }
+          >
+            <LinkRow item={item} />
+          </div>
         ))}
       </div>
     </section>

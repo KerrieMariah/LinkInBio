@@ -33,5 +33,9 @@ export async function startTipCheckoutSession(coffeeCount: number) {
     mode: 'payment',
   })
 
+  if (!session.client_secret) {
+    throw new Error('Stripe did not return a checkout client secret.')
+  }
+
   return session.client_secret
 }

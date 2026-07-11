@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   description:
     'Kerrie Mariah — developer, solo traveler, and creator. Explore my projects, work, digital products, and get in touch.',
   generator: 'v0.app',
+  icons: {
+    icon: '/images/person1.png',
+    apple: '/images/person1.png',
+  },
 }
 
 export const viewport: Viewport = {

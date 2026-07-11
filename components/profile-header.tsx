@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Globe, Mail, MapPin, MessageCircle } from 'lucide-react'
-import type { ComponentType, SVGProps } from 'react'
+import type { ComponentType, CSSProperties, SVGProps } from 'react'
 
 type IconProps = SVGProps<SVGSVGElement>
 
@@ -46,7 +46,10 @@ export function ProfileHeader() {
   return (
     <header className="relative">
       {/* Spacing below the sticky banner, then a rounded photo that fades into the page */}
-      <div className="relative mt-8 h-[400px] w-full overflow-hidden rounded-3xl px-4">
+      <div
+        className="animate-smooth-fade-up relative mt-8 h-[400px] w-full overflow-hidden rounded-3xl px-4"
+        style={{ '--enter-delay': '120ms' } as CSSProperties}
+      >
         <div className="relative h-full w-full overflow-hidden rounded-3xl">
           <Image
             src="/images/banner.jpg"
@@ -90,9 +93,9 @@ export function ProfileHeader() {
 
       {/* Friendly intro blurb with a marker-highlighted word */}
       <p className="mx-auto mt-6 max-w-sm px-4 text-center text-lg leading-relaxed text-foreground text-pretty">
-        Developer, traveler &amp; {' '}
+        Traveler &amp; {' '}
         <span className="relative inline-block font-bold">
-          <span className="relative z-10">yapper</span>
+          <span className="relative z-10">developer</span>
           <span
             aria-hidden="true"
             className="absolute inset-x-0 bottom-0.5 z-0 h-3 -rotate-1 bg-highlight"
