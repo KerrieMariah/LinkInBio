@@ -45,12 +45,12 @@ const socials: {
 export function ProfileHeader() {
   return (
     <header className="relative">
-      {/* Spacing below the sticky banner, then a rounded photo that fades into the page */}
+      {/* Full-bleed on mobile, then a rounded photo card on larger screens. */}
       <div
-        className="animate-smooth-fade-up relative mt-8 h-[400px] w-full overflow-hidden rounded-3xl px-4"
+        className="animate-smooth-fade-up relative h-[calc(100svh-56px)] min-h-[560px] w-full overflow-hidden px-0 sm:mt-8 sm:h-[400px] sm:min-h-0 sm:rounded-3xl sm:px-4"
         style={{ '--enter-delay': '120ms' } as CSSProperties}
       >
-        <div className="relative h-full w-full overflow-hidden rounded-3xl">
+        <div className="relative h-full w-full overflow-hidden sm:rounded-3xl">
           <Image
             src="/images/banner.jpg"
             alt="Kerrie Mariah sailing on a boat in the harbor"
@@ -60,7 +60,7 @@ export function ProfileHeader() {
             className="object-cover object-center"
           />
           {/* Fade the bottom of the photo into the page background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-55% to-background" />
 
           {/* Playful location sticker */}
           <span className="absolute left-4 top-4 flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-sm font-bold text-accent-foreground shadow-sm">
@@ -70,8 +70,8 @@ export function ProfileHeader() {
         </div>
       </div>
 
-      {/* Name + socials sit on the cream just under the fade, layered on top */}
-      <div className="relative z-10 -mt-16 flex flex-col items-center gap-3 px-4">
+      {/* Name + socials sit inside the mobile fade, then just under the photo on larger screens. */}
+      <div className="relative z-10 -mt-36 flex flex-col items-center gap-3 px-4 sm:-mt-16">
         <h1 className="font-display text-4xl font-semibold uppercase tracking-wide text-foreground">
           @kerriemariah
         </h1>
@@ -92,7 +92,7 @@ export function ProfileHeader() {
       </div>
 
       {/* Friendly intro blurb with a marker-highlighted word */}
-      <p className="mx-auto mt-6 max-w-sm px-4 text-center text-lg leading-relaxed text-foreground text-pretty">
+      <p className="relative z-10 mx-auto mt-6 max-w-sm px-4 text-center text-lg leading-relaxed text-foreground text-pretty">
         Traveler &amp; {' '}
         <span className="relative inline-block font-bold">
           <span className="relative z-10">developer</span>

@@ -10,7 +10,7 @@ export function ProductsSection() {
   return (
     <section>
       <SectionTitle>My Digital Products</SectionTitle>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
         {PRODUCTS.map((product) => (
           <article
             key={product.id}
@@ -21,22 +21,22 @@ export function ProductsSection() {
                 src={product.image || '/placeholder.svg'}
                 alt={product.name}
                 fill
-                sizes="(max-width: 640px) 100vw, 300px"
+                sizes="(max-width: 640px) 50vw, 300px"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <span className="absolute right-2 top-2 rounded-full bg-accent px-2.5 py-1 text-sm font-bold text-accent-foreground shadow-sm">
                 {formatPrice(product.priceInCents)}
               </span>
             </div>
-            <div className="flex flex-1 flex-col gap-2 p-4">
-              <h3 className="font-semibold leading-tight tracking-tight text-balance">
+            <div className="flex flex-1 flex-col gap-2 p-3 sm:p-4">
+              <h3 className="text-sm font-semibold leading-tight tracking-tight text-balance sm:text-base">
                 {product.name}
               </h3>
               <a
                 href={product.shopUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-auto rounded-xl bg-primary py-2.5 text-center text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
+                className="mt-auto rounded-xl bg-primary py-2.5 text-center text-xs font-bold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95 sm:text-sm"
               >
                 Shop now
               </a>

@@ -44,7 +44,7 @@ export function ContactForm() {
             type="text"
             required
             placeholder="Your name"
-            className="rounded-xl border-2 border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-ring"
+            className="rounded-xl border-2 border-border bg-white px-4 py-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-ring"
           />
 
           <label className="sr-only" htmlFor="email">
@@ -56,7 +56,7 @@ export function ContactForm() {
             type="email"
             required
             placeholder="Your email"
-            className="rounded-xl border-2 border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-ring"
+            className="rounded-xl border-2 border-border bg-white px-4 py-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-ring"
           />
 
           <label className="sr-only" htmlFor="message">
@@ -68,7 +68,7 @@ export function ContactForm() {
             required
             rows={4}
             placeholder="Your message..."
-            className="resize-none rounded-xl border-2 border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-ring"
+            className="resize-none rounded-xl border-2 border-border bg-white px-4 py-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-ring"
           />
 
           <SubmitButton />
