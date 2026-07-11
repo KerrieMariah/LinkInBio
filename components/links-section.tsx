@@ -1,6 +1,6 @@
 import { LinkRow, type LinkItem } from '@/components/link-row'
+import { ScrollReveal } from '@/components/scroll-reveal'
 import { SectionTitle } from '@/components/section-title'
-import type { CSSProperties } from 'react'
 
 export function LinksSection({
   title,
@@ -14,15 +14,9 @@ export function LinksSection({
       <SectionTitle>{title}</SectionTitle>
       <div className="flex flex-col gap-3">
         {items.map((item, index) => (
-          <div
-            key={item.title}
-            className="animate-smooth-fade-up"
-            style={
-              { '--enter-delay': `${650 + index * 110}ms` } as CSSProperties
-            }
-          >
+          <ScrollReveal key={item.title} delay={index * 70}>
             <LinkRow item={item} />
-          </div>
+          </ScrollReveal>
         ))}
       </div>
     </section>
